@@ -1,0 +1,7 @@
+$('#modal-proveedores-title').html("Nuevo proveedor");
+ 
+$('.modal-body-proveedores').html('<%= j render("form") %>');
+ 
+<%unless @proveedor.errors.any?%>
+    $('#btn_opened_modal_proveedor').trigger("click");
+<%end%>

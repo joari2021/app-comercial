@@ -1,0 +1,5 @@
+$("#btn_modal_categorias_closed").trigger("click");
+$('#categoria_<%= @categoria.id %>').replaceWith(
+    '<tr id="categoria_<%= @categoria.id %>" style="display:none;" ><td><%= @categoria.name %></td><td><%= @categoria.description %></td><td><%= link_to 'Editar', edit_category_path(@categoria), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @categoria, remote: true, method: :delete, data: { confirm: "¿Borrar categoria: #{@categoria.name}?"}, class: "btn btn-danger btn-xs" %></td></tr>'
+);
+$('#categoria_<%= @categoria.id %>').fadeTo(1000,1)

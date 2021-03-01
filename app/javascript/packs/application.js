@@ -3,11 +3,21 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+require("@rails/ujs").start();
+require("turbolinks").start();
+require("@rails/activestorage").start();
+require("channels");
+require("jquery");
 
+//CSS
+import "css/styles";
+import "css/sb-admin-2";
+
+//JAVASCRIPT
+import "bootstrap";
+import "@fortawesome/fontawesome-free/js/all";
+
+import "channels/sb-admin-2";
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

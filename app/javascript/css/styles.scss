@@ -1,0 +1,16 @@
+@import '~bootstrap/scss/bootstrap';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+
+*{  
+    box-sizing: border-box;
+}
+div.field_with_errors{
+    width:100% !important;
+}
+p.msj_error{
+    font-size: 75%;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}

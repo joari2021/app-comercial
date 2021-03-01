@@ -1,0 +1,7 @@
+$('#modal-clientes-title').html("Nuevo cliente");
+ 
+$('.modal-body-clientes').html('<%= j render("form") %>');
+
+<%unless @cliente.errors.any?%>
+    $("#btn_opened_modal_clientes").trigger("click");
+<%end%>

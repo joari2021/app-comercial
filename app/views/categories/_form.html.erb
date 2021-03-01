@@ -1,0 +1,29 @@
+<%= form_for @categoria, remote: true do |f| %>
+    <div class="form-group">
+      <h4 class="control-label">Datos de la categoría:</h4>
+    </div>
+
+    <div class="item form-group<%= @categoria.errors[:name].any? ? ' has-error has-feedback' : '' %>">
+      <%= f.label :name, "Nombre de Categoría: " %>
+      <div class="input-group">
+        <%= f.text_field :name, {:class=> "form-control", :placeholder=>"Introduzca el nombre de la categoría..."} %>        
+        <%if @categoria.errors[:name].any? %>
+          <p class="msj_error mt-2 bg-danger rounded"><%= @categoria.errors[:name].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="item form-group<%= @categoria.errors[:description].any? ? ' has-error has-feedback' : '' %>">
+      <%= f.label :description, "Descripción de la categoría: " %>
+      <div class="input-group">
+        <%= f.text_area :description, {class: "form-control", :placeholder=>"Introduzca la descripción de la categoría..."} %>
+        <%if @categoria.errors[:description].any? %>
+          <p class="mt-2 msj_error bg-danger rounded"><%= @categoria.errors[:description].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="actions col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+      <%= f.submit @categoria.new_record? ? "Crear Categoría" : "Actualizar Categoría", :class => "btn btn-success"%>
+    </div>  
+<% end %>

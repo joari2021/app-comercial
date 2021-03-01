@@ -1,0 +1,5 @@
+$("#btn_closed_modal_clientes").trigger("click");
+$('#cliente_<%= @cliente.id %>').replaceWith(
+    '<tr id="cliente_<%= @cliente.id %>" style="display:none;"><td><%= @cliente.name %></td><td><%= @cliente.address %></td><td><%= @cliente.phone %></td><td><%= link_to 'Editar', edit_client_path(@cliente), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @cliente, remote: true, method: :delete, data: { confirm: "¿Borrar cliente: #{@cliente.name}?"}, class: "btn btn-danger btn-xs" %></td></tr>'
+);
+$('#cliente_<%= @cliente.id %>').fadeTo(1000,1)

@@ -1,0 +1,8 @@
+$('#modal-categorias-title').html("Editar categoria");
+
+$('.modal-body-categorias').html('<%= j render("form") %>');
+ 
+//$('#modal-categorias').modal("show");
+<%unless @categoria.errors.any?%>
+    $("#btn_modal_categorias").trigger("click");
+<%end%>
