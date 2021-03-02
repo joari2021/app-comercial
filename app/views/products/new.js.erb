@@ -1,0 +1,7 @@
+$('#modal-productos-title').html("Nuevo producto");
+
+$('.modal-body-productos').html('<%= j render("form") %>');
+ 
+<% unless @product.errors.any? %>
+    $("#btn_opened_modal_products").trigger("click");
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_202404) do
+ActiveRecord::Schema.define(version: 2021_03_02_131158) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 2021_02_25_202404) do
     t.string "description"
     t.integer "existence"
     t.decimal "price"
-    t.integer "categories_id", null: false
-    t.integer "suppliers_id", null: false
+    t.integer "category_id", null: false
+    t.integer "supplier_id", null: false
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_products_on_categories_id"
-    t.index ["suppliers_id"], name: "index_products_on_suppliers_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_02_25_202404) do
     t.index ["supplier_id"], name: "index_warehouse_records_on_supplier_id"
   end
 
-  add_foreign_key "products", "categories", column: "categories_id"
-  add_foreign_key "products", "suppliers", column: "suppliers_id"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "suppliers"
   add_foreign_key "warehouse_records", "products"
   add_foreign_key "warehouse_records", "suppliers"
 end
