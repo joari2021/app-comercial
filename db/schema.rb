@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_131158) do
+ActiveRecord::Schema.define(version: 2021_03_08_132509) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -41,11 +41,23 @@ ActiveRecord::Schema.define(version: 2021_03_02_131158) do
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
+  create_table "sale_details", force: :cascade do |t|
+    t.integer "cantidad"
+    t.integer "product_id", null: false
+    t.integer "sale_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_sale_details_on_product_id"
+    t.index ["sale_id"], name: "index_sale_details_on_sale_id"
+  end
+
   create_table "sales", force: :cascade do |t|
     t.decimal "importe"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "client_id"
+    t.index ["client_id"], name: "index_sales_on_client_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -82,6 +94,9 @@ ActiveRecord::Schema.define(version: 2021_03_02_131158) do
 
   add_foreign_key "products", "categories"
   add_foreign_key "products", "suppliers"
+  add_foreign_key "sale_details", "products"
+  add_foreign_key "sale_details", "sales"
+  add_foreign_key "sales", "clients"
   add_foreign_key "warehouse_records", "products"
   add_foreign_key "warehouse_records", "suppliers"
 end

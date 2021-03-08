@@ -50,7 +50,7 @@ class ClientsController < ApplicationController
       @resultados = Client.buscador(params[:termino]).map do |cliente|
         {
             id: cliente.id,
-            nombre_cliente: cliente.nombre
+            nombre_cliente: cliente.name
         }
       end
 

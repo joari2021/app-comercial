@@ -55,8 +55,8 @@ class ProductsController < ApplicationController
     @resultados = Product.buscador(params[:termino]).map do |producto|
       {
         id: producto.id,
-        nombre_producto: producto.nombre,
-        existencia: producto.existencia
+        nombre_producto: producto.name,
+        existencia: producto.existence
       }
     end
 
