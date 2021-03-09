@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_132509) do
+ActiveRecord::Schema.define(version: 2021_03_09_175652) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 2021_03_08_132509) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "foto"
+    t.string "nombre"
+    t.string "apellido"
+    t.string "direccion"
+    t.string "ciudad"
+    t.string "estado"
+    t.string "zip"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "sale_details", force: :cascade do |t|
@@ -81,22 +95,35 @@ ActiveRecord::Schema.define(version: 2021_03_08_132509) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "warehouse_details", force: :cascade do |t|
+    t.integer "cantidad"
+    t.integer "product_id"
+    t.integer "warehouse_record_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_warehouse_details_on_product_id"
+    t.index ["warehouse_record_id"], name: "index_warehouse_details_on_warehouse_record_id"
+  end
+
   create_table "warehouse_records", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "supplier_id", null: false
-    t.integer "product_id", null: false
     t.integer "cantidad"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "supplier_id"
+    t.integer "product_id"
     t.index ["product_id"], name: "index_warehouse_records_on_product_id"
     t.index ["supplier_id"], name: "index_warehouse_records_on_supplier_id"
   end
 
   add_foreign_key "products", "categories"
   add_foreign_key "products", "suppliers"
+  add_foreign_key "profiles", "users"
   add_foreign_key "sale_details", "products"
   add_foreign_key "sale_details", "sales"
   add_foreign_key "sales", "clients"
+  add_foreign_key "warehouse_details", "products"
+  add_foreign_key "warehouse_details", "warehouse_records"
   add_foreign_key "warehouse_records", "products"
   add_foreign_key "warehouse_records", "suppliers"
 end

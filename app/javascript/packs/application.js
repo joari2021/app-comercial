@@ -11,7 +11,6 @@ require("jquery");
 
 //CSS
 import "css/styles";
-import "css/sales";
 import "css/sb-admin-2";
 
 //JAVASCRIPT
@@ -123,7 +122,7 @@ document.addEventListener("turbolinks:load", function() {
                    <td>
                        <button 
                          class = "btn btn-primary"
-                         onclick="seleccionarProveedor(${id_proveedor}, ${id_registro_almacen})"
+                         id = "btn_select_proveedor"
                          >
                            Agregar
                        </button>
@@ -131,6 +130,9 @@ document.addEventListener("turbolinks:load", function() {
                  </tr>
               `;
               $("#tabla_buscador_proveedores tbody").append(rowContent);
+              $("#btn_select_proveedor").click(function(){
+                seleccionarProveedor(id_proveedor, id_registro_almacen)
+              })
             }
           }
         });
@@ -183,9 +185,10 @@ document.addEventListener("turbolinks:load", function() {
       contentType: 'application/json; charset=utf-8',
       success: function(result){
         if(result != null) {
-          $("#buscador_proveedor").modal("hide");
-          $('body').removeClass('modal-open');
-          $('.modal-backdrop').remove();
+          //$("#buscador_proveedor").modal("hide");
+          //$('body').removeClass('modal-open');
+          //$('.modal-backdrop').remove();
+          $("#btn_closed_modal_supliers").trigger('click');
           
           let nombre_proveedor = result.nombre_proveedor;
           $("#proveedor-entrada").html("Proveedor: " + nombre_proveedor);
@@ -239,9 +242,10 @@ document.addEventListener("turbolinks:load", function() {
       success: function(result) {
         console.log("resultado: " + result);
         if( result != null ){
-          $("#buscador_producto").modal('hide');
-          $('body').removeClass('modal-open');
-          $('.modal-backdrop').remove();
+          //$("#buscador_producto").modal('hide');
+          //$('body').removeClass('modal-open');
+          //$('.modal-backdrop').remove();
+          $("#btn_closed_modal_add_products").trigger('click');
   
           let product_id = result.product_id;
           let cantidad = result.cantidad;

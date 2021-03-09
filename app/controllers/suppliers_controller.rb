@@ -50,7 +50,7 @@ class SuppliersController < ApplicationController
     @resultados = Supplier.buscador(params[:termino]).map do |proveedor|
       {
           id: proveedor.id,
-          nombre_proveedor: proveedor.nombre
+          nombre_proveedor: proveedor.name
       }
     end
 
